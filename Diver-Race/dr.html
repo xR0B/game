@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+<title>DiverRace - Drag Ship</title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#9f00a7">
+<meta name="theme-color" content="#ffffff">
+<style>
+ body {
+ position: relative;
+ width: 0%;
+ height: 0%;
+ margin: 0;
+ overflow: hidden;  <!-- /*Hidden the scroll*/ -->
+ padding: 0;
+ background: url('TABLELIGHT.png')/*Wallpaper*/ center/cover fixed, #000
+}
+ 
+.block {
+	position: absolute;
+    top: 7vh;
+    left: -3vh;
+	width: 100%;
+    height: 100%;
+	list-style: none;
+	cursor: move;
+	webkit-touch-callout: none; 
+	-webkit-user-select: none; 
+	-khtml-user-select: none; 
+	-moz-user-select: none; 
+	-ms-user-select: none; 
+	user-select: none;
+}
+
+.cyan {
+	background-image: url('shipcyan.png');
+	position: relative;
+	width: 55px;
+	height: 56px;
+	float: left;
+	margin: 0px;
+	cursor: move;
+}
+
+.pink {
+	background-image: url('shippink.png');
+    position: relative;
+	width: 55px;
+	height: 56px;
+	float: left;
+	margin: 0px;
+	cursor: move;
+}
+
+.orange {
+	background-image: url('shiporange.png');
+	position: relative;
+	width: 55px;
+	height: 56px;;
+	float: left;
+	margin: 0px;
+	cursor: move;
+}
+
+.green {
+	background-image: url('shipgreen.png');
+	position: relative;
+	width: 55px;
+	height: 56px;
+	float: left;
+	margin: 0px;
+	cursor: move;
+}
+
+.red {
+	background-image: url('shipred.png');
+	position: relative;
+	width: 55px;
+	height: 56px;
+	float: left;
+	margin: 0px;
+	cursor: move;
+}
+
+.blue {
+	background-image: url('shipblue.png');
+	position: relative;
+	width: 55px;
+	height: 56px;
+	float: left;
+	margin: 0px;
+	cursor: move;
+}
+
+.white {
+	background-image: url('shipwhite.png');
+	position: relative;
+	width: 55px;
+	height: 56px;
+	float: left;
+	margin: 0px;
+	cursor: move;
+}
+
+.yellow {
+	background-image: url('shipyellow.png');
+	position: relative;
+	width: 55px;
+	height: 56px;
+	float: left;
+	margin: 0px;
+	cursor: move;
+}
+
+.stars-container {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.stars-container .stars {
+  width: 170px;
+  top: 140px;
+  position: relative;
+  left: 220px;
+}
+.stars-container .stars div:nth-child(1) {
+  width: 20px;
+  position: relative;
+  height: 6px;
+  border-radius: 100%;
+  background: #fff;
+  -webkit-animation: twinkle-width 1s ease infinite;
+  animation: twinkle-width 1s ease infinite;
+}
+.stars-container .stars div:nth-child(2) {
+  width: 6px;
+  height: 20px;
+  top: -5px;
+  position: absolute;
+  background: #fff;
+  border-radius: 100%;
+  left: 7px;
+  top: -7px;
+  -webkit-transform-origin: middle;
+  transform-origin: middle;
+  -webkit-animation: twinkle-height 1s ease infinite;
+  animation: twinkle-height 1s ease infinite;
+}
+.stars-container .stars div:nth-child(3) {
+  background: #fff;
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  left: 5px;
+  top: -2px;
+  border-radius: 100px;
+}
+.stars-container .stars div:nth-child(4) {
+  background: #fff;
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 30px;
+  left: 5px;
+  top: -3px;
+  border-radius: 100px;
+}
+.stars-container .stars:nth-child(2) {
+  position: relative;
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  top: 20px;
+  left: 0px;
+}
+.stars-container .stars:nth-child(2) div {
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+.stars-container .stars:nth-child(3) {
+  position: relative;
+  -webkit-transform: scale(0.6);
+  transform: scale(0.6);
+  top: -10px;
+  left: 150px;
+}
+.stars-container .stars:nth-child(3) div {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+.stars-container .stars:nth-child(4) {
+  position: relative;
+  -webkit-transform: scale(0.4);
+  transform: scale(0.4);
+  top: -50px;
+  left: 350px;
+}
+.stars-container .stars:nth-child(4) div {
+  -webkit-animation-delay: 0.9s;
+  animation-delay: 0.9s;
+}
+.stars-container .stars:nth-child(5) {
+  position: relative;
+  -webkit-transform: scale(0.7);
+  transform: scale(0.7);
+  top: 20px;
+  left: 560px;
+}
+.stars-container .stars:nth-child(5) div {
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+.stars-container .stars-2 {
+  border-radius: 100%;
+  position: absolute;
+  -webkit-animation: twinkle 0.5s ease infinite;
+  animation: twinkle 0.5s ease infinite;
+}
+.stars-container .stars-2:nth-child(5) {
+  width: 10px;
+  height: 10px;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzczMGY4ZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=");
+  background: linear-gradient(to right, #730f8e, rgba(0, 0, 0, 0));
+  left: 150px;
+  top: 120px;
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+.stars-container .stars-2:nth-child(6) {
+  width: 10px;
+  height: 10px;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlYTMyODEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=");
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), #ea3281);
+  left: 420px;
+  top: -50px;
+}
+.stars-container .stars-2:nth-child(7) {
+  width: 8px;
+  height: 8px;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3MzBmOGUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=");
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), #730f8e);
+  left: 350px;
+  top: -70px;
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+.stars-container .stars-2:nth-child(8) {
+  width: 9px;
+  height: 9px;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2ZTgxZTMiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=");
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), #6e81e3);
+  left: 520px;
+  top: 160px;
+  -webkit-animation-delay: 0.9s;
+  animation-delay: 0.9s;
+  -webkit-animation-duration: 1.1s;
+  animation-duration: 1.1s;
+}
+.stars-container .stars-2:nth-child(9) {
+  width: 8.3px;
+  height: 8.3px;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2ZTgxZTMiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=");
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), #6e81e3);
+  left: 80px;
+  top: -30px;
+  -webkit-animation-delay: 0.9s;
+  animation-delay: 0.9s;
+  -webkit-animation-duration: 1.1s;
+  animation-duration: 1.1s;
+}
+.stars-container .stars-2:nth-child(10) {
+  width: 8.9px;
+  height: 8.9px;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3MzBmOGUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=");
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), #730f8e);
+  left: 750px;
+  top: 20px;
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+}
+
+.meteor-container {
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 800px;
+  left: 550px;
+  z-index: -1;
+  -webkit-animation: meteor-drop 7.3s ease-in infinite;
+  animation: meteor-drop 7.3s ease-in infinite;
+  -webkit-animation-delay: 1.6s;
+  animation-delay: 1.6s;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  opacity: 0;
+}
+.meteor-container div {
+  transition: all 0.3s ease-in;
+}
+.meteor-container div:nth-child(1) {
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjEuMCIgeDI9IjAuNSIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzczMGY4ZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=");
+  background: linear-gradient(to top, #730f8e, rgba(0, 0, 0, 0));
+  height: 150px;
+  width: 20px;
+  border-radius: 100px;
+  opacity: 0.8;
+  position: absolute;
+  left: -5.5px;
+  top: -96px;
+  z-index: -2;
+}
+.meteor-container div:nth-child(2) {
+  width: 12px;
+  height: 100px;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjEuMCIgeDI9IjAuNSIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y5MDI2ZCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=");
+  background: linear-gradient(to top, #f9026d, rgba(0, 0, 0, 0));
+  border-radius: 500px;
+  position: absolute;
+  opacity: 0.8;
+  left: -1.5px;
+  top: -53px;
+}
+.meteor-container div:nth-child(3) {
+  width: 8px;
+  height: 8px;
+  background: #fedc01;
+  border-radius: 100px;
+  top: 35px;
+  position: absolute;
+  z-index: 2;
+}
+.meteor-container div:nth-child(4) {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 30px solid #fedc01;
+  z-index: 1;
+  top: 8px;
+  position: absolute;
+}
+
+.meteor-container-2 {
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 900px;
+  left: 650px;
+  -webkit-animation: meteor-drop2 8.5s ease-n infinite;
+  animation: meteor-drop2 8.5s ease-in infinite;
+  -webkit-animation-delay: 4.5s;
+  animation-delay: 4.5s;
+  -webkit-transform: rotate(45deg) scale(0.9);
+  transform: rotate(45deg) scale(0.9);
+  opacity: 0;
+}
+.meteor-container-2 div {
+  transition: all 0.3s ease-in;
+}
+.meteor-container-2 div:nth-child(1) {
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjEuMCIgeDI9IjAuNSIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzczMGY4ZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=");
+  background: linear-gradient(to top, #730f8e, rgba(0, 0, 0, 0));
+  height: 150px;
+  width: 20px;
+  border-radius: 100px;
+  opacity: 0.8;
+  position: absolute;
+  left: -5.5px;
+  top: -96px;
+  z-index: -2;
+}
+.meteor-container-2 div:nth-child(2) {
+  width: 12px;
+  height: 100px;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjEuMCIgeDI9IjAuNSIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y5MDI2ZCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=");
+  background: linear-gradient(to top, #f9026d, rgba(0, 0, 0, 0));
+  border-radius: 500px;
+  position: absolute;
+  opacity: 0.8;
+  left: -1.5px;
+  top: -53px;
+}
+.meteor-container-2 div:nth-child(3) {
+  width: 8px;
+  height: 8px;
+  background: #fedc01;
+  border-radius: 100px;
+  top: 35px;
+  position: absolute;
+  z-index: 2;
+}
+.meteor-container-2 div:nth-child(4) {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 30px solid #fedc01;
+  z-index: 1;
+  top: 8px;
+  position: absolute;
+}
+
+.meteor-container-3 {
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 900px;
+  left: 650px;
+  z-index: -1;
+  -webkit-animation: meteor-drop3 10.5s ease-in infinite;
+  animation: meteor-drop3 10.5s ease-in infinite;
+  -webkit-animation-delay: 2.9s;
+  animation-delay: 2.9s;
+  -webkit-transform: rotate(45deg) scale(0.9);
+  transform: rotate(45deg) scale(0.9);
+  opacity: 0;
+}
+.meteor-container-3 div {
+  transition: all 0.3s ease-in;
+}
+.meteor-container-3 div:nth-child(1) {
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjEuMCIgeDI9IjAuNSIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzczMGY4ZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=");
+  background: linear-gradient(to top, #730f8e, rgba(0, 0, 0, 0));
+  height: 150px;
+  width: 20px;
+  border-radius: 100px;
+  opacity: 0.8;
+  position: absolute;
+  left: -5.5px;
+  top: -96px;
+  z-index: -2;
+}
+.meteor-container-3 div:nth-child(2) {
+  width: 12px;
+  height: 100px;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjEuMCIgeDI9IjAuNSIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y5MDI2ZCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=");
+  background: linear-gradient(to top, #f9026d, rgba(0, 0, 0, 0));
+  border-radius: 500px;
+  position: absolute;
+  opacity: 0.8;
+  left: -1.5px;
+  top: -53px;
+}
+.meteor-container-3 div:nth-child(3) {
+  width: 8px;
+  height: 8px;
+  background: #fedc01;
+  border-radius: 100px;
+  top: 35px;
+  position: absolute;
+  z-index: 2;
+}
+.meteor-container-3 div:nth-child(4) {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 30px solid #fedc01;
+  z-index: 1;
+  top: 8px;
+  position: absolute;
+}
+
+.meteor-container-4 {
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 900px;
+  left: 650px;
+  -webkit-animation: meteor-drop4 9.5s ease-in infinite;
+  animation: meteor-drop4 9.5s ease-in infinite;
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+  -webkit-transform: rotate(45deg) scale(0.9);
+  transform: rotate(45deg) scale(0.9);
+  opacity: 0;
+}
+.meteor-container-4 div {
+  transition: all 0.3s ease-in;
+}
+.meteor-container-4 div:nth-child(1) {
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjEuMCIgeDI9IjAuNSIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzczMGY4ZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=");
+  background: linear-gradient(to top, #730f8e, rgba(0, 0, 0, 0));
+  height: 150px;
+  width: 20px;
+  border-radius: 100px;
+  opacity: 0.8;
+  position: absolute;
+  left: -5.5px;
+  top: -96px;
+  z-index: -2;
+}
+.meteor-container-4 div:nth-child(2) {
+  width: 12px;
+  height: 100px;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjEuMCIgeDI9IjAuNSIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y5MDI2ZCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=");
+  background: linear-gradient(to top, #f9026d, rgba(0, 0, 0, 0));
+  border-radius: 500px;
+  position: absolute;
+  opacity: 0.8;
+  left: -1.5px;
+  top: -53px;
+}
+.meteor-container-4 div:nth-child(3) {
+  width: 8px;
+  height: 8px;
+  background: #fedc01;
+  border-radius: 100px;
+  top: 35px;
+  position: absolute;
+  z-index: 2;
+}
+.meteor-container-4 div:nth-child(4) {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 30px solid #fedc01;
+  z-index: 1;
+  top: 8px;
+  position: absolute;
+}
+
+
+@-webkit-keyframes "meteor-drop" {
+  0% {
+    opacity: 0;
+    top: 50px;
+    left: 1350px;
+  }
+  10% {
+    opacity: 1;
+  }
+  16%,
+  100% {
+    left: 750px;
+    top: 650px;
+    opacity: 0;
+  }
+}
+@keyframes "meteor-drop" {
+  0% {
+    opacity: 0;
+    top: 50px;
+    left: 1350px;
+  }
+  10% {
+    opacity: 1;
+  }
+  16%,
+  100% {
+    left: 750px;
+    top: 650px;
+    opacity: 0;
+  }
+}
+@-webkit-keyframes "meteor-drop2" {
+  0% {
+    opacity: 0;
+    top: 150px;
+    left: 1650px;
+  }
+  10% {
+    opacity: 1;
+  }
+  21%,
+  100% {
+    left: 1150px;
+    top: 650px;
+    opacity: 0;
+  }
+}
+@keyframes "meteor-drop2" {
+  0% {
+    opacity: 0;
+    top: 150px;
+    left: 1650px;
+  }
+  10% {
+    opacity: 1;
+  }
+  21%,
+  100% {
+    left: 1150px;
+    top: 650px;
+    opacity: 0;
+  }
+}
+@-webkit-keyframes "meteor-drop3" {
+  0% {
+    opacity: 0;
+    top: 50px;
+    left: 790px;
+  }
+  10% {
+    opacity: 1;
+  }
+  21%,
+  100% {
+    left: 190px;
+    top: 650px;
+    opacity: 0;
+  }
+}
+@keyframes "meteor-drop3" {
+  0% {
+    opacity: 0;
+    top: 50px;
+    left: 790px;
+  }
+  10% {
+    opacity: 1;
+  }
+  21%,
+  100% {
+    left: 190px;
+    top: 650px;
+    opacity: 0;
+  }
+}
+@-webkit-keyframes "meteor-drop4" {
+  0% {
+    opacity: 0;
+    top: 30px;
+    left: 500px;
+  }
+  10% {
+    opacity: 1;
+  }
+  19%,
+  100% {
+    left: 0px;
+    top: 530px;
+    opacity: 0;
+  }
+}
+@keyframes "meteor-drop4" {
+  0% {
+    opacity: 0;
+    top: 30px;
+    left: 500px;
+  }
+  10% {
+    opacity: 1;
+  }
+  19%,
+  100% {
+    left: 0px;
+    top: 530px;
+    opacity: 0;
+  }
+}
+2
+@-webkit-keyframes "twinkle-height" {
+  0% {
+    height: 20px;
+    top: -7px;
+  }
+  50% {
+    height: 10px;
+    top: -3px;
+  }
+  100% {
+    height: 20px;
+    top: -7px;
+  }
+}
+@keyframes "twinkle-height" {
+  0% {
+    height: 20px;
+    top: -7px;
+  }
+  50% {
+    height: 10px;
+    top: -3px;
+  }
+  100% {
+    height: 20px;
+    top: -7px;
+  }
+}
+@-webkit-keyframes "twinkle-width" {
+  0% {
+    width: 20px;
+    left: 0px;
+  }
+  50% {
+    width: 10px;
+    left: 5px;
+  }
+  100% {
+    width: 20px;
+    left: 0px;
+  }
+}
+@keyframes "twinkle-width" {
+  0% {
+    width: 20px;
+    left: 0px;
+  }
+  50% {
+    width: 10px;
+    left: 5px;
+  }
+  100% {
+    width: 20px;
+    left: 0px;
+  }
+}
+
+@-webkit-keyframes "twinkle" {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes "twinkle" {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+</style>
+
+<style>
+#outer1:target { 
+background-image: url(TABLELIGHT.png); /* Background 1 */ 
+} 
+ 
+#outer2:target { 
+background-image: url(TABLEDARK.png); /* Background 2 */ 
+}
+
+#outer1, 
+#outer2 { 
+position: relative;
+width: 10px;
+height: 10px%;
+margin: 10px;
+overflow: hidden;  <!-- /*Hidden the scroll*/ -->
+padding: 0;
+}  
+ 
+
+.btn1 { 
+background-image: url(TABLELIGHT.png); /* Button 1 */ 
+} 
+ 
+.btn2 { 
+background-image: url(TABLEDARK.png); /* Button 2 */ 
+} 
+
+.buttons { 
+position: relative;
+top: 0vh;
+left: 0vh;
+width: 100%;
+height: 100%;
+	
+
+} 
+
+.btn { 
+background-position: center; 
+background-size: cover; 
+width: 50px; 
+height: 50px; 
+border-radius: 50px; 
+margin-top: 5px; 
+margin-left: 17px;
+display: block; 
+border: 3px solid rgba(255, 255, 255, 0.2); 
+} 
+
+#footer {
+   position:fixed;
+   text-align: center; opacity: 100;
+   font-family: sans-serif;
+   color:#89eaff; 
+   font-size: 12px;
+   width: 100%;
+   bottom: 0px;
+   height:17px;
+   background:#6C00D8; opacity: .4;
+}
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+ <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+
+<body translate="no" >
+
+<body oncontextmenu="return false" onkeydown="return false">
+
+<div class="stars-container">
+  <div class="stars">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="stars">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="stars">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="stars">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="stars">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="stars-2"></div>
+  <div class="stars-2"></div>
+  <div class="stars-2"></div>
+  <div class="stars-2"></div>
+  <div class="stars-2"></div>
+  <div class="stars-2"></div>
+</div>
+
+<div class="meteor-container">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<div class="meteor-container-2">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<div class="meteor-container-3">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<div class="meteor-container-4">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<div id="footer">Freelance Creative Illustrators and brothers, Rob & Ryan © 2020 Diverzone</div>
+
+
+<div id="outer1"  ></div> 
+<div id="outer2" ></div> 
+
+<div class="buttons"> 
+<a href="#" onclick="cambiarFondo('TABLELIGHT.png');" class="btn btn1"></a> 
+<a href="#" onclick="cambiarFondo('TABLEDARK.png');" class="btn btn2"></a> 
+
+	<head>
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+		<!-- JS -->
+		<script type="text/javascript" src="assets/js/moving.js"></script>
+	</head>
+	<body onload="moveInit();">		
+
+		<!-- photoGrid -->
+		<section id="photoGrid">	
+			<ul id="photoLayout" class="canvas"></ul>
+		</section>
+		<!-- End of photoGrid -->
+
+	</body>
+
+    
+<script id="rendered-js" >
+
+/* These variables: to change the background */
+
+function cambiarFondo(img) {
+document.body.style.backgroundImage = "url("+img+")";
+}
+
+
+/* These variables determine the new location of the moving image */
+var moveObject = null; //Object to be moved
+var moving = false; // Is the mouse currently moving
+var lastZindex = 0; // To ensure the dragged element will be at the front of all other objects
+
+/* Top left x & y coordinates of the photo after it's clicked */
+var elementXCoord;
+var elementYCoord;
+
+/********************************************************************  
+                   		This function will load the boxes onto the page. 
+                   		The prepareMove function is assigned to the mousedown event.
+                   ********************************************************************/
+
+function moveInit() {
+  var photoGrid = document.getElementById("photoLayout");
+
+  var newCyanBox = document.createElement("li");
+  newCyanBox.className = "block cyan";
+  newCyanBox.onmousedown = prepareMove;
+
+  var newPinkBox = document.createElement("li");
+  newPinkBox.className = "block pink";
+  newPinkBox.onmousedown = prepareMove;
+  
+  var newOrangeBox = document.createElement("li");
+  newOrangeBox.className = "block orange";
+  newOrangeBox.onmousedown = prepareMove;
+  
+  var newGreenBox = document.createElement("li");
+  newGreenBox.className = "block green";
+  newGreenBox.onmousedown = prepareMove;
+  
+  var newRedBox = document.createElement("li");
+  newRedBox.className = "block red";
+  newRedBox.onmousedown = prepareMove;
+  
+  var newBlueBox = document.createElement("li");
+  newBlueBox.className = "block blue";
+  newBlueBox.onmousedown = prepareMove;
+  
+  var newWhiteBox = document.createElement("li");
+  newWhiteBox.className = "block white";
+  newWhiteBox.onmousedown = prepareMove;
+  
+  var newYellowBox = document.createElement("li");
+  newYellowBox.className = "block yellow";
+  newYellowBox.onmousedown = prepareMove;
+
+  photoGrid.appendChild(newCyanBox);
+  photoGrid.appendChild(newPinkBox);
+  photoGrid.appendChild(newOrangeBox);
+  photoGrid.appendChild(newGreenBox);
+  photoGrid.appendChild(newRedBox);
+  photoGrid.appendChild(newBlueBox);
+  photoGrid.appendChild(newWhiteBox);
+  photoGrid.appendChild(newYellowBox);
+}
+
+/******************************************************************** 
+  		This function is called once a user clicks down on a ship. 
+  		The moveElement function is triggered once the user starts 
+  		moving the ship around.
+  ********************************************************************/
+
+function prepareMove(event) {
+  event.preventDefault();
+
+  if (!moving) {
+    moveObject = event;
+
+    elementXCoord = moveObject.pageX - moveObject.currentTarget.offsetLeft;
+    elementYCoord = moveObject.pageY - moveObject.currentTarget.offsetTop;
+
+    moveObject.currentTarget.onmousemove = moveElement;
+    moveObject.currentTarget.onmouseup = stopMove;
+
+    moving = true;
+  } else {
+    moving = false;
+  }
+}
+
+/******************************************************************** 
+  		This function is called when the user is moving the square around. 
+  		It first finds the x & y mouse coordinates and calculates the
+  		new position of the moving image.  
+  ********************************************************************/
+
+function moveElement(event) {
+  moveObject = event;
+  var movingImage = moveObject.target;
+
+  var mouseXCoord = moveObject.pageX; // x coordinate of mouse as it moves
+  var mouseYCoord = moveObject.pageY; //y coordinate of mouse as it moves
+
+  if (moving) {
+    movingImage.style.position = 'absolute';
+    lastZindex++;
+    movingImage.style.zIndex = lastZindex;
+    movingImage.style.left = mouseXCoord - elementXCoord + "px";
+    movingImage.style.top = mouseYCoord - elementYCoord + "px";
+  }
+}
+
+
+
+/********************************************************************  
+  		When the mouseup event is called, this function will reset our 
+  		variables used to track the moving image.
+  ********************************************************************/
+
+function stopMove() {
+  moveObject = null;
+  moving = false;
+}
+//# sourceURL=pen.js
+</script>
+</body>
+
+</html>
+ 
